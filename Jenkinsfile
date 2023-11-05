@@ -21,8 +21,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                input message: 'Lanjutkan ke tahap Deploy?'
                 script {
-                    input message: 'Lanjutkan ke tahap Deploy?'
                     if (input.message == 'Proceed'){
                         sh './jenkins/scripts/deliver.sh'
                         sleep(duration: '1 minute')
