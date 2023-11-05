@@ -23,7 +23,7 @@ pipeline {
             steps {
                 input message: 'Lanjutkan ke tahap Deploy?'
                 sh './jenkins/scripts/deliver.sh'
-                sleep(duration: '1 minute')
+                sleep(time: '1 minute')
                 sh './jenkins/scripts/kill.sh'
             }
         }
