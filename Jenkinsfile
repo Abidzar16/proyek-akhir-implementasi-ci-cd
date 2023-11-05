@@ -19,11 +19,14 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deliver') {
+        stage('Deploy') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the website? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                input message: 'Lanjutkan ke tahap Deploy?'
+                if (input.message == 'Proceed'){
+                    sh './jenkins/scripts/deliver.sh'
+                } else {
+                    sh './jenkins/scripts/kill.sh'
+                }
             }
         }
     }
