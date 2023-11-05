@@ -21,13 +21,15 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                input message: 'Lanjutkan ke tahap Deploy?'
-                if (input.message == 'Proceed'){
-                    sh './jenkins/scripts/deliver.sh'
-                    sleep(duration: '1 minute')
-                    sh './jenkins/scripts/kill.sh'
-                } else {
-                    sh './jenkins/scripts/kill.sh'
+                script {
+                    input message: 'Lanjutkan ke tahap Deploy?'
+                    if (input.message == 'Proceed'){
+                        sh './jenkins/scripts/deliver.sh'
+                        sleep(duration: '1 minute')
+                        sh './jenkins/scripts/kill.sh'
+                    } else {
+                        sh './jenkins/scripts/kill.sh'
+                    }
                 }
             }
         }
